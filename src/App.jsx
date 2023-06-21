@@ -1,29 +1,26 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import RandomQuotes from "./components/RandomQuotes";
 import AllQuotes from "./components/AllQuotes";
 import Footer from "./components/Footer";
+import { useFetchQuote } from "./hooks/useFetchQuote";
 
 function App() {
-  const [quote, setQuote] = useState("");
-  const [author, setAuthor] = useState("");
-  const [genre, setGenre] = useState("");
+  const [generateQuote, setGenerateQuote] = useState(false);
   const [isAuthorSelected, setIsAuthorSelected] = useState(false);
-
-  useEffect(() => {
-    generateRandomQuote();
-  }, []);
+  const { quote, author, genre, loading } = useFetchQuote(
+    "https://quote-garden.onrender.com/api/v3/quotes/random",
+    generateQuote
+  );
 
   const generateRandomQuote = async () => {
     setIsAuthorSelected(false);
-    axios
-      .get("https://quote-garden.onrender.com/api/v3/quotes/random")
-      .then((response) => {
-        setQuote(response.data.data[0].quoteText);
-        setAuthor(response.data.data[0].quoteAuthor);
-        setGenre(response.data.data[0].quoteGenre);
-      });
+    setGenerateQuote(true);
+    if (generateQuote) {
+      setGenerateQuote(false);
+    }
   };
+
+  console.log(quote);
 
   return (
     <div className="container relative min-h-screen m-auto w-9/12 font-['Raleway']">
@@ -37,12 +34,15 @@ function App() {
           quote={quote}
           author={author}
           genre={genre}
+          loading={loading}
           generateRandomQuote={generateRandomQuote}
           setIsAuthorSelected={setIsAuthorSelected}
         />
       )}
 
-      {isAuthorSelected && <AllQuotes author={author} />}
+      {isAuthorSelected && (
+        <AllQuotes author={author} generateQuote={generateQuote} />
+      )}
 
       <Footer />
     </div>

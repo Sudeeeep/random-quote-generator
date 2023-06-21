@@ -1,17 +1,26 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import propTypes from "prop-types";
+import { useFetchQuote } from "../hooks/useFetchQuote";
 
-const AllQuotes = ({ author }) => {
-  const [allQuotes, setAllQuotes] = useState([]);
+const AllQuotes = ({ author, generateQuote }) => {
+  const { allQuotes, loading } = useFetchQuote(
+    `https://quote-garden.onrender.com/api/v3/quotes?author=${author}&limit=100`,
+    generateQuote
+  );
 
-  useEffect(() => {
-    axios
-      .get(
-        `https://quote-garden.onrender.com/api/v3/quotes?author=${author}&limit=100`
-      )
-      .then((response) => setAllQuotes(response.data.data));
-  }, [author]);
+  if (loading) {
+    return (
+      <div className="sm:w-1/2 m-auto pb-10">
+        <h1 className="my-10 ml-10 text-2xl font-bold">{author}</h1>
+        <div className="flex flex-col gap-10 mb-10">
+          <div>
+            <p className="border-l-4 border-[#F7DF94] px-10 text-2xl font-medium">
+              LOADING...
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="sm:w-1/2 m-auto pb-10">
@@ -33,6 +42,7 @@ const AllQuotes = ({ author }) => {
 
 AllQuotes.propTypes = {
   author: propTypes.string,
+  generateQuote: propTypes.bool,
 };
 
 export default AllQuotes;
