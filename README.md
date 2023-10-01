@@ -1,23 +1,9 @@
-<!-- Please update value in the {}  -->
-
 <h1 align="center">Random Quote Generator</h1>
-
-<div align="center">
-   Solution for a challenge from  <a href="http://devchallenges.io" target="_blank">Devchallenges.io</a>.
-</div>
 
 <div align="center">
   <h3>
     <a href="https://random-quote-genapp.vercel.app/">
-      Demo
-    </a>
-    <span> | </span>
-    <a href="https://devchallenges.io/solutions/y5AvfvVrxsACiU8GNEGw">
-      Solution
-    </a>
-    <span> | </span>
-    <a href="https://devchallenges.io/challenges/8Y3J4ucAMQpSnYTwwWW8">
-      Challenge
+      Check out the demo here
     </a>
   </h3>
 </div>
@@ -51,8 +37,10 @@
 ## Features
 
 <!-- List the features of your application or follow the template. Don't share the figma file here :) -->
-
-This application/site was created as a submission to a [DevChallenges](https://devchallenges.io/challenges) challenge. The [challenge](https://devchallenges.io/challenges/8Y3J4ucAMQpSnYTwwWW8) was to build an application to complete the given user stories.
+- Random quote generator app built with React.js
+- Uses [Quote Garden](https://pprathameshmore.github.io/QuoteGarden/) API to fetch quotes.
+- User cann generate random quote by clicking on Random button.
+- When user clicks the Author Name, they can see list of quotes from the author.
 
 
 ## How To Use
@@ -63,7 +51,7 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [N
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/your-user-name/your-project-name
+$ git clone https://github.com/Sudeeeep/random-quote-generator
 
 # Install dependencies
 $ npm install
@@ -75,3 +63,4 @@ $ npm start
 ## Contact
 
 - GitHub [@Sudeeeep](https://github.com/Sudeeeep/random-quote-generator)
+- Linkedin [@Sudeep Nair](https://www.linkedin.com/in/sudeep-nair-1295a8201)
